@@ -259,7 +259,8 @@ input {
 }
 
 .site-header__title {
-    font-size: clamp(1.35rem, 4vw, 2rem);
+	font-family: var(--font-ar);
+    font-size: clamp(1.35rem, 4vw, 2.2rem);
     font-weight: 700;
     margin-bottom: 0.6rem;
     letter-spacing: 0.3px;
@@ -1026,7 +1027,136 @@ input {
 }		
 		
 		
-		
+/* ==========================================================================
+   ۲۰. یادبود معنوی
+   اختصاصی — بدون تداخل با سایر بخش‌ها
+   ========================================================================== */
+.memorial {
+    max-width: var(--content-max);
+    margin: 1.5rem auto 0.5rem;           /* ← این خط را تغییر دهید */
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    background: linear-gradient(
+        160deg,
+        var(--color-primary-tint),
+        var(--color-accent-tint)
+    );
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    direction: rtl;
+    transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+/* بقیه کد بدون تغییر... */
+.memorial::before,
+.memorial::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-accent);
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.memorial::before {
+    top: 8px;
+    right: 8px;
+    border-left: none;
+    border-bottom: none;
+    border-top-right-radius: var(--radius-sm);
+}
+
+.memorial::after {
+    bottom: 8px;
+    left: 8px;
+    border-right: none;
+    border-top: none;
+    border-bottom-left-radius: var(--radius-sm);
+}
+
+.memorial__ornament {
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    opacity: 0.65;
+    letter-spacing: 0.4rem;
+    margin: 0.25rem 0;
+    user-select: none;
+}
+
+.memorial__title {
+    font-family: var(--font-fa);
+    font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+    font-weight: 600;
+    color: var(--color-primary);
+    line-height: 2;
+    margin: 0.6rem 0 0.4rem;
+    letter-spacing: 0.2px;
+}
+
+.memorial__subtitle {
+    font-family: var(--font-fa);
+    font-size: clamp(0.78rem, 2.1vw, 0.88rem);
+    font-weight: 300;
+    color: var(--color-text-soft);
+    font-style: italic;
+    line-height: 1.9;
+    margin: 0;
+    opacity: 0.9;
+}
+
+@media (max-width: 480px) {
+    .memorial {
+        margin: 1.5rem 0.75rem 0.75rem;
+        padding: 1.15rem 0.9rem;
+    }
+
+    .memorial__title {
+        font-size: 0.92rem;
+        line-height: 1.9;
+    }
+
+    .memorial__subtitle {
+        font-size: 0.78rem;
+    }
+
+    .memorial__ornament {
+        font-size: 0.75rem;
+        letter-spacing: 0.3rem;
+    }
+}
+
+@media print {
+    .memorial {
+        background: none !important;
+        border: 1px dashed #999 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .memorial::before,
+    .memorial::after {
+        display: none;
+    }
+
+    .memorial__title {
+        color: #000 !important;
+    }
+
+    .memorial__subtitle {
+        color: #333 !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .memorial {
+        transition: none;
+    }
+}		
 		
 		
 		
@@ -1077,6 +1207,15 @@ input {
     </header>
 
     <main class="main-content" role="main">
+	
+        <!-- ✅ یادبود اینجا قرار می‌گیرد -->
+        <section class="memorial" aria-label="یادبود">
+            <div class="memorial__ornament" aria-hidden="true">✦ ❁ ✦</div>
+            <p class="memorial__title">فاتحه‌ای نثار روح مرحومه مغفوره، حاجیه خانم مینازاده مبارک</p>
+            <p class="memorial__subtitle">رحمت و مغفرت الهی قرین روح پاکشان باد</p>
+            <div class="memorial__ornament" aria-hidden="true">✦ ❁ ✦</div>
+        </section>
+		
 
         <section class="notice" aria-label="یادآوری">
             <p class="notice__text">
